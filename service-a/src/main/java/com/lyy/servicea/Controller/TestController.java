@@ -1,5 +1,7 @@
 package com.lyy.servicea.Controller;
 
+import com.lyy.servicea.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -8,8 +10,11 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 public class TestController {
+    @Autowired
+    private UserService userService;
+
     @RequestMapping("/hello")
-    public String hello(){
-        return "hello world";
+    public Object hello(){
+        return userService.queryAll();
     }
 }

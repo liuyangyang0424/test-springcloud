@@ -4,6 +4,18 @@ server:
 spring:
   application:
     name: service-objcat-a
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/boot_db?characterEncoding=utf-8&serverTimezone=UTC&useSSL=false
+    username: root
+    password: root
+    hikari:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+
+mybatis:
+  #指定POJO扫描包来让mybatis自动扫描到自定义POJO,xml中引用时直接写pojo名称就可以
+  type-aliases-package: com.lyy.servicea.entity
+  mapper-locations: classpath:mapper/*.xml
+
 eureka:
   client:
     service-url:
