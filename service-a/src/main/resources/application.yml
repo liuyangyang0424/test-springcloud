@@ -30,3 +30,10 @@ eureka:
     prefer-ip-address: true
     #注册中心列表中显示的状态参数
     instance-id: ${spring.cloud.client.ip-address}:${server.port}
+
+#Fegin 连接超时设置
+ribbon:
+  #建立连接超时时间
+  ReadTimeout: 5000
+  #读取资源超时时间
+  connectTimeout: 5000
