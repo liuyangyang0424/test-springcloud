@@ -1,6 +1,7 @@
 package com.lyy.serviceb.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -9,6 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 public class TestController {
+    @Value("${server.port}")
+    private String port;
     @Autowired
     private ServiceAFeignClient serviceAFeignClient;
 
@@ -16,6 +19,10 @@ public class TestController {
     public String call(){
         String result = serviceAFeignClient.hello();
         return " b to a 访问结果 ------"+result;
+    }
+    @RequestMapping("/hello")
+    public String hello(){
+        return "访问接口是："+port;
     }
 
 }
