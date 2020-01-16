@@ -4,6 +4,7 @@ import com.lyy.servicea.service.UserService;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -12,11 +13,18 @@ import org.springframework.web.bind.annotation.RestController;
  */
 
 @RestController
+@RefreshScope   //配置刷新
 public class TestController {
     @Autowired
     private UserService userService;
     @Value("${server.port}")
     private String port;
+    @Value("${name}")
+    private String name;
+    @RequestMapping("/testname")
+    public String testname(){
+        return name;
+    }
 
    /* @HystrixCommand(fallbackMethod = "fallback")  //配置服务保护*/
     @RequestMapping("/hello")

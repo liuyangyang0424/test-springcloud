@@ -10,7 +10,18 @@ spring:
     password: root
     hikari:
       driver-class-name: com.mysql.cj.jdbc.Driver
-
+  cloud:
+    config:
+      profile: dev
+      discovery:
+        enabled: true
+        service-id: service-config
+#暴露所有endpoints
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
 mybatis:
   #指定POJO扫描包来让mybatis自动扫描到自定义POJO,xml中引用时直接写pojo名称就可以
   type-aliases-package: com.lyy.servicea.entity
@@ -45,3 +56,4 @@ ribbon:
     # execution:
     #  timeout:
   #   enabled: false
+
